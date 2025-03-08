@@ -16,14 +16,14 @@ class AppStatusContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 4.w),
       decoration: BoxDecoration(
-        color: status == 'pending'
+        color: status == 'pending' || status == 'in_transit'
             ? Colors.orange
-            : status == 'approved'
-                ? Colors.green
-                : status == 'rejected'
+            : status == 'approved' || status == 'partial_received'
+                ? Theme.of(context).colorScheme.primary
+                : status == 'rejected' || status == 'canceled'
                     ? Colors.red
                     : status == 'completed'
-                        ? Colors.blue
+                        ? Colors.green
                         : Colors.grey,
         borderRadius: BorderRadius.circular(12),
       ),
