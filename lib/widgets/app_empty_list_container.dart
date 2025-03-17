@@ -10,8 +10,8 @@ class AppEmptyListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.8,
       alignment: Alignment.center,
-      color: Colors.transparent,
       child: Text(
         message,
         style: TextStyle(

@@ -22,7 +22,7 @@ class AppStatusContainer extends StatelessWidget {
                 ? Theme.of(context).colorScheme.primary
                 : status == 'rejected' || status == 'canceled'
                     ? Colors.red
-                    : status == 'completed'
+                    : status == 'completed' || status == 'received'
                         ? Colors.green
                         : Colors.grey,
         borderRadius: BorderRadius.circular(12),

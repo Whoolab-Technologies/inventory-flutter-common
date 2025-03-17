@@ -10,6 +10,8 @@ class AppCustomDropdown<T> extends StatelessWidget {
   final String? Function(T?)? validator;
   final String Function(T) itemToString;
   final String Function(T) itemDisplayText;
+  final String? emptyMessage;
+  final bool showClear;
 
   const AppCustomDropdown({
     super.key,
@@ -18,9 +20,11 @@ class AppCustomDropdown<T> extends StatelessWidget {
     required this.label,
     required this.placeholder,
     required this.onChanged,
-    this.validator,
     required this.itemToString,
     required this.itemDisplayText,
+    this.validator,
+    this.emptyMessage,
+    this.showClear = false,
   });
 
   @override
@@ -38,46 +42,85 @@ class AppCustomDropdown<T> extends StatelessWidget {
           constraints: BoxConstraints(
             minHeight: 50.h,
           ),
-          child: DropdownButtonFormField<T>(
-            decoration: InputDecoration(
-                helperStyle: TextStyle(
-                  color: primary,
+          child: items.isEmpty
+              ? Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: primary,
+                    ),
+                    borderRadius: BorderRadius.circular(12.w),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          emptyMessage ?? "No items available",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_outlined,
+                        size: 30.sp,
+                        color: primary,
+                      )
+                    ],
+                  ),
+                )
+              : DropdownButtonFormField<T>(
+                  decoration: InputDecoration(
+                      helperStyle: TextStyle(
+                        color: primary,
+                      ),
+                      labelStyle: TextStyle(
+                        color: primary,
+                      ),
+                      hintStyle: TextStyle(
+                        color: primary,
+                      )),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  value: value,
+                  icon: GestureDetector(
+                    onTap: (value == null || !showClear)
+                        ? null
+                        : () {
+                            onChanged(null);
+                          },
+                    child: Icon(
+                      value != null && showClear
+                          ? Icons.close_outlined
+                          : Icons.keyboard_arrow_down_outlined,
+                      size: 30.sp,
+                      color: primary,
+                    ),
+                  ),
+                  hint: Text(
+                    placeholder,
+                    style: TextStyle(
+                      color: primary,
+                    ),
+                  ),
+                  onChanged: (T? newValue) {
+                    onChanged(newValue);
+                  },
+                  validator: validator,
+                  items: items.map((T item) {
+                    return DropdownMenuItem<T>(
+                      value: item,
+                      child: Text(
+                        itemDisplayText(item),
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                        ), // Adjust font size as needed
+                      ),
+                    );
+                  }).toList(),
                 ),
-                labelStyle: TextStyle(
-                  color: primary,
-                ),
-                hintStyle: TextStyle(
-                  color: primary,
-                )),
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            value: value,
-            icon: Icon(
-              Icons.keyboard_arrow_down_outlined,
-              size: 30.sp,
-              color: primary,
-            ),
-            hint: Text(
-              placeholder,
-              style: TextStyle(
-                color: primary,
-              ),
-            ),
-            onChanged: (T? newValue) {
-              onChanged(newValue);
-            },
-            validator: validator,
-            items: items.map((T item) {
-              return DropdownMenuItem<T>(
-                value: item,
-                child: Text(
-                  itemDisplayText(item),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                  ), // Adjust font size as needed
-                ),
-              );
-            }).toList(),
-          ),
         ),
       ],
     );
