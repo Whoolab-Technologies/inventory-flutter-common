@@ -1,33 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mvp_shared_components/core/extensions.dart';
+import 'package:mvp_shared_components/core/models/status/status.dart';
 
 class AppStatusContainer extends StatelessWidget {
   const AppStatusContainer({
     super.key,
     required this.status,
-    required this.child,
+    this.text,
+    this.textStyle,
+    this.child,
   });
 
-  final String status;
-  final Widget child;
+  final Status status;
+  final String? text;
+  final TextStyle? textStyle;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 4.w),
       decoration: BoxDecoration(
-        color: status == 'pending' || status == 'in_transit'
-            ? Colors.orange
-            : status == 'approved' || status == 'partial_received'
-                ? Theme.of(context).colorScheme.primary
-                : status == 'rejected' || status == 'canceled'
-                    ? Colors.red
-                    : status == 'completed' || status == 'received'
-                        ? Colors.green
-                        : Colors.grey,
-        borderRadius: BorderRadius.circular(12),
+        color: status.color.toColor(),
+        borderRadius: BorderRadius.circular(12.r),
       ),
-      child: child,
+      child: child ??
+          Text(
+            text ?? status.name,
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: textStyle ??
+                TextStyle(
+                    color: Colors.white,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500),
+          ),
     );
   }
 }

@@ -86,19 +86,22 @@ class AppCustomDropdown<T> extends StatelessWidget {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   value: value,
                   icon: GestureDetector(
-                    onTap: (value == null || !showClear)
-                        ? null
-                        : () {
-                            onChanged(null);
-                          },
-                    child: Icon(
-                      value != null && showClear
-                          ? Icons.close_outlined
-                          : Icons.keyboard_arrow_down_outlined,
-                      size: 30.sp,
-                      color: primary,
-                    ),
-                  ),
+                      onTap: (value == null || !showClear)
+                          ? null
+                          : () {
+                              onChanged(null);
+                            },
+                      child: SizedBox(
+                        height: 20.w,
+                        width: 20.w,
+                        child: Icon(
+                          value != null && showClear
+                              ? Icons.close_outlined
+                              : Icons.keyboard_arrow_down_outlined,
+                          size: 30.sp,
+                          color: primary,
+                        ),
+                      )),
                   hint: Text(
                     placeholder,
                     style: TextStyle(
@@ -109,14 +112,13 @@ class AppCustomDropdown<T> extends StatelessWidget {
                     onChanged(newValue);
                   },
                   validator: validator,
-                  items: items.map((T item) {
+                  items: items.asMap().entries.map((entry) {
+                    final item = entry.value;
                     return DropdownMenuItem<T>(
                       value: item,
                       child: Text(
                         itemDisplayText(item),
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                        ), // Adjust font size as needed
+                        style: TextStyle(fontSize: 14.sp),
                       ),
                     );
                   }).toList(),

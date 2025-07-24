@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AppSearchField extends StatefulWidget {
@@ -55,34 +54,31 @@ class _AppSearchFieldState extends State<AppSearchField> {
   Widget build(BuildContext context) {
     primaryColor = Theme.of(context).colorScheme.primary;
 
-    return Padding(
-      padding: EdgeInsets.all(8.w),
-      child: TextField(
-        controller: _searchController,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search),
-          hintText: widget.hintText,
-          suffixIcon: _showClearButton
-              ? SizedBox(
-                  height: kMinInteractiveDimension, // Ensures proper alignment
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min, // Keeps the row compact
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          _searchController.clear();
-                          setState(() {
-                            _showClearButton = false;
-                          });
-                        },
-                        icon: const Icon(Icons.clear_outlined),
-                      ),
-                      if (widget.suffixIcon != null) widget.suffixIcon!,
-                    ],
-                  ),
-                )
-              : widget.suffixIcon,
-        ),
+    return TextField(
+      controller: _searchController,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search),
+        hintText: widget.hintText,
+        suffixIcon: _showClearButton
+            ? SizedBox(
+                height: kMinInteractiveDimension, // Ensures proper alignment
+                child: Row(
+                  mainAxisSize: MainAxisSize.min, // Keeps the row compact
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        _searchController.clear();
+                        setState(() {
+                          _showClearButton = false;
+                        });
+                      },
+                      icon: const Icon(Icons.clear_outlined),
+                    ),
+                    if (widget.suffixIcon != null) widget.suffixIcon!,
+                  ],
+                ),
+              )
+            : widget.suffixIcon,
       ),
     );
   }
