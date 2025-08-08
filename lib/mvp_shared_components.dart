@@ -10,4 +10,7 @@ export './widgets/custom_snackbar.dart';
 export './widgets/app_empty_list_container.dart';
 export './widgets/no_data_available_card.dart';
 export './widgets/image_picker_button.dart';
+export './widgets/product_search_button.dart';
 export './widgets/image_picker_screen.dart';
+export './widgets/qr_code_scanner_page.dart';
+export './widgets/fade_in_network_image.dart';
