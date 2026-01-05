@@ -56,6 +56,17 @@ This repository is one of the core modules of the multi-store inventory system:
 
 ---
 
+## 🏷️ License
+
+This project is open-source for learning and evaluation purposes.
+
+❗ Commercial use, resale, hosting as a service, or redistribution is not permitted.
+
+For commercial licensing, customization, or deployment:
+
+📩 mail@whoolab.com
+
+---
 ## 🤝 Contributions
 
 Internal enhancement contributions are welcome.
