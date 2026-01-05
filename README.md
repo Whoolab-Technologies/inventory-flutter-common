@@ -1,39 +1,76 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Inventory Platform — Shared Flutter Components
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+Reusable Flutter widgets, utilities, and UI components shared across:
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+- Storekeeper Mobile App
+- Engineer Mobile App
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This library ensures a consistent design system, shared business UI patterns,
+and reduces duplicated code across mobile modules.
 
-## Features
+---
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## 🧩 Part of the Centralized Inventory Platform
 
-## Getting started
+This repository is one of the core modules of the multi-store inventory system:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Platform Overview  
+  👉 https://github.com/Whoolab-Technologies/inventory-platform
+- API Server  
+  👉 https://github.com/Whoolab-Technologies/inventory-api
+- Admin Web App  
+  👉 https://github.com/Whoolab-Technologies/inventory-admin-web
+- Storekeeper App  
+  👉 https://github.com/Whoolab-Technologies/inventory-storekeeper-flutter
+- Engineer App  
+  👉 https://github.com/Whoolab-Technologies/inventory-engineer-flutter
 
-## Usage
+---
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+## ✨ What this package includes
 
-```dart
-const like = 'sample';
-```
+- Shared UI components
+- Common form builders
+- Reusable layout widgets
+- Core theme & design tokens
+- Common services & helpers
+- Shared QR-scanner UI hooks
+- Common navigation patterns
 
-## Additional information
+---
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## 🎯 Why a shared library?
+
+- Prevents UI/logic duplication
+- Keeps both apps visually consistent
+- Enables faster feature updates
+- Improves long-term maintainability
+
+---
+
+## 🛠️ Tech
+
+- Flutter
+- Dart
+- Modular architecture
+
+---
+
+## 🤝 Contributions
+
+Internal enhancement contributions are welcome.
+
+---
+
+## 💼 Business / Customization Enquiries
+
+This library is part of a complete enterprise inventory platform.
+
+If your organization needs:
+
+✔️ Feature customization  
+✔️ Custom workflows  
+✔️ Mobile app extensions  
+
+📩 Contact Whoolab Technologies  
+📧 mail@whoolab.com
