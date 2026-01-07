@@ -158,16 +158,20 @@ class MaterialTheme {
           // Change the text size of the input value
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
-            style: ButtonStyle(
-          side: WidgetStateProperty.all(
-            BorderSide(
-              color: colorScheme.primary,
+          style: ButtonStyle(
+            side: WidgetStateProperty.all(
+              BorderSide(
+                color: colorScheme.primary,
+              ),
+            ),
+            minimumSize: WidgetStateProperty.all(
+              const Size(double.infinity, 52.0),
+            ),
+            textStyle: WidgetStateProperty.all(
+              TextStyle(fontSize: 16.sp),
             ),
           ),
-          minimumSize: WidgetStateProperty.all(
-            const Size(double.infinity, 52.0),
-          ),
-        )),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(colorScheme.primary),

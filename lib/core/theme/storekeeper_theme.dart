@@ -166,6 +166,9 @@ class MaterialTheme {
           minimumSize: WidgetStateProperty.all(
             const Size(double.infinity, 52.0),
           ),
+          textStyle: WidgetStateProperty.all(
+            TextStyle(fontSize: 14.sp),
+          ),
         )),
         floatingActionButtonTheme:
             const FloatingActionButtonThemeData(foregroundColor: Colors.white),
