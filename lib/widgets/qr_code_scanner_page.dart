@@ -15,7 +15,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage>
   QRViewController? controller;
   String qrText = 'Scan a QR Code';
   bool _showReloadButton = false;
-
+  bool _isProcessingScan = false;
   @override
   void reassemble() {
     super.reassemble();
@@ -153,25 +153,36 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage>
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
+
     controller.scannedDataStream.listen((scanData) async {
-      // Utils.handleError(context, scanData.code ?? 'No Data');
+      if (_isProcessingScan) return;
+      _isProcessingScan = true;
+
       await controller.pauseCamera();
       _animationController.stop();
+
+      if (!mounted) return;
+
       setState(() {
         _showReloadButton = true;
         qrText = scanData.code ?? 'No Data';
-        widget.onDecode(scanData.code ?? "-1");
       });
-    }, onError: (error, s) {});
+
+      widget.onDecode(scanData.code ?? "-1");
+    });
   }
 
   void _restartScanner() {
+    _isProcessingScan = false; // 👈 allow scanning again
+
     _animationController.reset();
     _animationController.forward();
+
     setState(() {
       _showReloadButton = false;
       qrText = 'Scan a QR Code';
     });
+
     controller?.resumeCamera();
   }
 
