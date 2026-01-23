@@ -25,6 +25,7 @@ class AppSearchFieldState extends State<AppSearchField> {
   final _searchSubject = BehaviorSubject<String>();
   bool _showClearButton = false;
   bool _suppressOnChange = false;
+  bool _isInitialLoad = true;
 
   @override
   void initState() {
@@ -47,9 +48,12 @@ class AppSearchFieldState extends State<AppSearchField> {
         _showClearButton = hasText;
       });
     }
-
     // ONLY trigger search logic if not suppressed
     if (!_suppressOnChange) {
+      if (_isInitialLoad && _searchController.text.isEmpty) {
+        _isInitialLoad = false;
+        return;
+      }
       _searchSubject.add(_searchController.text);
     }
   }
@@ -90,6 +94,7 @@ class AppSearchFieldState extends State<AppSearchField> {
                 onPressed: () {
                   _searchController.clear();
                   widget.onChange("");
+                  FocusManager.instance.primaryFocus?.unfocus();
                 },
                 icon: const Icon(Icons.clear),
               ),
