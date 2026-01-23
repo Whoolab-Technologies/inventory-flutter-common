@@ -29,6 +29,7 @@ class _ProductSearchFieldState extends State<ProductSearchField> {
           onDecode: (decodedValue) {
             _searchKey.currentState?.setTextSilently(decodedValue);
             widget.onDecode(decodedValue);
+            FocusScope.of(context).unfocus();
           },
         ),
       ),
